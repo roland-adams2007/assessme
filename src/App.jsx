@@ -1,4 +1,4 @@
-import { HashRouter  as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter  as Router, Routes, Route } from "react-router-dom";
 import Account from "./assessme/Account";
 import Course from "./assessme/Course";
 import Questions from "./assessme/Questions";
