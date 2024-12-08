@@ -7,7 +7,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Auth from "./assessme/Auth";
 import NotFound from "./assessme/NotFound";
- // Import the NotFound component
 
 function App() {
   return (
@@ -16,19 +15,15 @@ function App() {
         <Routes>
           {/* Public Route */}
           <Route path="/account" element={<Account />} />
-          <Route
-            path="*"
-            element={
-              <Auth>
-                <Routes>
-                  <Route path="/courses" element={<Course />} />
-                  <Route path="/score" element={<Score />} />
-                  <Route path="/" element={<Questions />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Auth>
-            }
-          />
+
+          {/* Protected Routes, wrapped with Auth */}
+          <Route element={<Auth />}>
+            <Route path="/courses" element={<Course />} />
+            <Route path="/score" element={<Score />} />
+            <Route path="/" element={<Questions />} />
+          </Route>
+
+          {/* Fallback Route for unmatched paths */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

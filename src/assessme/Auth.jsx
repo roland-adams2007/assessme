@@ -5,23 +5,28 @@ import { toast } from "react-toastify";
 
 const Auth = ({ children }) => {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null); // Start with null state for loading
 
   useEffect(() => {
     const userDetails = localStorage.getItem("user_details");
     if (!userDetails) {
       toast.warn("You need to log in to access this page."); // Inform user
-      navigate("/account");
+      navigate("/account"); // Redirect user to login page
     } else {
-      setIsAuthenticated(true);
+      setIsAuthenticated(true); // Set authentication state to true
     }
   }, [navigate]);
 
-  if (!isAuthenticated) {
-    return null; // Prevent rendering children until authentication is confirmed
+  if (isAuthenticated === null) {
+    // You can show a loading spinner or nothing while checking authentication
+    return <div>Loading...</div>; // Simple placeholder, can be a loader component
   }
 
-  return <>{children}</>;
+  if (!isAuthenticated) {
+    return null; // If not authenticated, nothing renders until the user is redirected
+  }
+
+  return <>{children}</>; // If authenticated, render the children (protected routes)
 };
 
 export default Auth;
