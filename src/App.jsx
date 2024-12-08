@@ -17,11 +17,18 @@ function App() {
           <Route path="/account" element={<Account />} />
 
           {/* Protected Routes, wrapped with Auth */}
-          <Route element={<Auth />}>
+          {/* <Route element={<Auth />}>
             <Route path="/courses" element={<Course />} />
             <Route path="/score" element={<Score />} />
             <Route path="/" element={<Questions />} />
-          </Route>
+          </Route> */}
+
+
+        <Route path="/score" element={<Account />} />
+        <Route path="/courses" element={<Course />} />
+        <Route path="/" element={<Questions />} />
+
+
 
           {/* Fallback Route for unmatched paths */}
           <Route path="*" element={<NotFound />} />
