@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter  as Router, Routes, Route } from "react-router-dom";
 import Account from "./assessme/Account";
 import Course from "./assessme/Course";
 import Questions from "./assessme/Questions";
@@ -17,7 +17,7 @@ function App() {
           <Route path="/account" element={<Account />} />
 
           {/* Protected Routes, wrapped with Auth */}
-          <Route path="/*" element={<Auth />}>
+          <Route element={<Auth />}>
             <Route path="/courses" element={<Course />} />
             <Route path="/score" element={<Score />} />
             <Route path="/" element={<Questions />} />
